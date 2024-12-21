@@ -24,7 +24,7 @@ def main(args):
 
     text_embeddding_list = []
     for cls_name in cls_names:
-        query_text = "An image of a " + cls_name
+        query_text = "A picture containing " + cls_name
         c_split = pretrain_detector.backbone.model.cond_stage_model.tokenizer.tokenize(query_text)
         sen_text_embedding = pretrain_detector.backbone.model.get_learned_conditioning(query_text)
         class_embedding = sen_text_embedding[:, 5:len(c_split) + 1, :]
@@ -38,7 +38,7 @@ def main(args):
         zero_embeddings = text_embeddings.new_zeros(2 - c1, c2)
         text_embeddings = torch.cat([text_embeddings, zero_embeddings], 0)
 
-    prompt = 'An image of ' + ' and '.join(cls_names)
+    prompt = 'A picture containing ' + ' and '.join(cls_names)
     print(f"Prompt: {prompt}")
     batch_data_samples = DetDataSample(
         metainfo=dict(
