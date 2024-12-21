@@ -81,7 +81,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--detector_ckpt",
         type=str,
-        default="work_dirs/instagen-4scale_fd_8xb2-12e_coco/epoch_12.pth",
+        default="kaggle/input/instagen-model-weights/pytorch/default/1/instagen-4scale_fd_8xb2-12e_coco.pth",
         help="path to checkpoint of InstaGen",
     )
     parser.add_argument(
