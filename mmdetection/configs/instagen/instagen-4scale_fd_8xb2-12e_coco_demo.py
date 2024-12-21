@@ -30,7 +30,7 @@ model = dict(
         last_sample=False,
         return_img=True,
         config="../configs/stable-diffusion/v1-inference.yaml",
-        sd_ckpt="../checkpoints/stable-diffusion-v-1-4-original/sd-v1-4.ckpt"
+        sd_ckpt="/kaggle/input/sdm-original-weights/pytorch/default/1/sd-v1-4-full-ema.ckpt"
     ),
     neck=dict(
         type='ChannelMapper',
