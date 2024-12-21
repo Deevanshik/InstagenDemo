@@ -18,13 +18,13 @@ def seed_everything(seed):
 
 def main(args):
     seed_everything(args.seed)
-    cls_names = [name.strip() for name in args.cls_names.split(',')]
+    cls_names = list(args.cls_names.strip())
     device = torch.device(f"cuda:0") if torch.cuda.is_available() else torch.device("cpu")
     pretrain_detector = init_detector(args.detector_config, args.detector_ckpt, device=device, palette='random')
 
     text_embeddding_list = []
     for cls_name in cls_names:
-        query_text = "a photo of a " + cls_name
+        query_text = "a photograph of a " + cls_name
         c_split = pretrain_detector.backbone.model.cond_stage_model.tokenizer.tokenize(query_text)
         sen_text_embedding = pretrain_detector.backbone.model.get_learned_conditioning(query_text)
         class_embedding = sen_text_embedding[:, 5:len(c_split) + 1, :]
@@ -38,7 +38,7 @@ def main(args):
         zero_embeddings = text_embeddings.new_zeros(2 - c1, c2)
         text_embeddings = torch.cat([text_embeddings, zero_embeddings], 0)
 
-    prompt = 'a photo of ' + ' and '.join(cls_names)
+    prompt = 'a photograph of ' + cls_names[0]
     print(f"Prompt: {prompt}")
     batch_data_samples = DetDataSample(
         metainfo=dict(
