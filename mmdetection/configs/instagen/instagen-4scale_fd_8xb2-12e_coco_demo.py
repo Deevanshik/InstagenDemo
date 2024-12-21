@@ -261,6 +261,6 @@ param_scheduler = [
 # base_batch_size = (8 GPUs) x (4 samples per GPU)
 auto_scale_lr = dict(base_batch_size=32)
 
-work_dir = './work_dirs/instagen-4scale_fd_8xb2-12e_coco_demo'
+#work_dir = './work_dirs/instagen-4scale_fd_8xb2-12e_coco_demo'
 
 find_unused_parameters = True
